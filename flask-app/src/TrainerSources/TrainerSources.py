@@ -13,15 +13,16 @@ trainer_resources = Blueprint('TrainerResources', __name__)
 @trainer_resources.route('/TrainerResources', methods=['GET'])
 def get_trainer_resources():
     # Logic to retrieve and return all trainer resources
+    pass 
 
-    @trainer_resources.route('/TrainerResources', methods=['POST'])
-    def add_trainer_resource():
-        workout = request.form['Workout']
-        duration = request.form['Duration']
-        intensity = request.form['Intensity']
-        trainer_id = request.form['TrainerID']
-        # Insert logic
-        # ...
+@trainer_resources.route('/TrainerResources', methods=['POST'])
+def add_trainer_resource():
+    workout = request.form['Workout']
+    duration = request.form['Duration']
+    intensity = request.form['Intensity']
+    trainer_id = request.form['TrainerID']
+    # Insert logic
+    # ...
 
 @trainer_resources.route('/TrainerResources/<workout_name>', methods=['PUT'])
 def update_trainer_resource(workout_name):
