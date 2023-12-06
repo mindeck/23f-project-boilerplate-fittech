@@ -55,7 +55,7 @@ def get_Members():
     the_response.mimetype = 'application/json'
     return the_response
 
-# Get customer detail for customer with particular MemberID
+# Get member detail for member with particular MemberID
 @members.route('/Members/<userID>', methods=['GET'])
 def get_Members(MemberID):
     cursor = db.get_db().cursor()

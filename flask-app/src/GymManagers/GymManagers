@@ -1,0 +1,24 @@
+# app/managers/routes.py
+from flask import Blueprint
+
+managers_bp = Blueprint("managers", __name__)
+
+@managers_bp.route('/managers', methods=['GET'])
+def get_managers():
+    # Get all gym managers
+    pass
+
+@managers_bp.route('/managers', methods=['POST'])
+def add_manager():
+    # Add a new gym manager
+    pass
+
+@managers_bp.route('/managers/<int:manager_id>', methods=['PUT'])
+def update_manager(manager_id):
+    # Update details of a specific manager
+    pass
+
+@managers_bp.route('/managers/<int:manager_id>', methods=['DELETE'])
+def delete_manager(manager_id):
+    # Delete a specific manager
+    pass

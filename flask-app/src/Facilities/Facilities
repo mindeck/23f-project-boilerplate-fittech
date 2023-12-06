@@ -1,0 +1,29 @@
+# app/facilities/routes.py
+from flask import Blueprint
+
+facilities_bp = Blueprint("facilities", __name__)
+
+@facilities_bp.route('/facilities', methods=['GET'])
+def get_facilities():
+    # Get all gym facilities
+    pass
+
+@facilities_bp.route('/facilities', methods=['POST'])
+def add_facility():
+    # Add a new gym facility
+    pass
+
+@facilities_bp.route('/facilities/<int:facility_id>', methods=['GET'])
+def get_facility(facility_id):
+    # Get details of a specific gym facility
+    pass
+
+@facilities_bp.route('/facilities/<int:facility_id>', methods=['PUT'])
+def update_facility(facility_id):
+    # Update details of a specific gym facility
+    pass
+
+@facilities_bp.route('/facilities/<int:facility_id>', methods=['DELETE'])
+def delete_facility(facility_id):
+    # Delete a specific gym facility
+    pass
