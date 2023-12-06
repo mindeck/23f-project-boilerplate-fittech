@@ -13,7 +13,19 @@ membership = Blueprint('Membership', __name__)
 @membership.route('/Membership', methods=['GET'])
 def get_memberships():
     # Logic to retrieve and return all memberships
-    pass
+    cursor = db.get_db().cursor()
+    cursor.execute('select MembershipID, StartDate,\
+        EndDate, CreditCard, MemberID from MembershipID')
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
 
 @membership.route('/Membership', methods=['POST'])
 def add_membership():
