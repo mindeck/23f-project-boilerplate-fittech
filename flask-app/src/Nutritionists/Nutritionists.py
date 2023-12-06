@@ -9,7 +9,19 @@ nutritionists = Blueprint("trainers", __name__)
 @nutritionists.route('/Nutritionists', methods=['GET'])
 def get_nutritionists():
     # Logic to retrieve and return all nutritionists
-    pass
+    cursor = db.get_db().cursor()
+    cursor.execute('select NutritionistID, FirstName,\
+        LastName, PhoneNumber, Email, ManagerID from Nutritionists')
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
 
 @nutritionists.route('/Nutritionists', methods=['POST'])
 def add_nutritionist():
