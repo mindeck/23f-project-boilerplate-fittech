@@ -17,5 +17,3 @@ This repo contains a boilerplate setup for spinning up 3 Docker containers:
 
 
 Markus Indeck, Luke Albinger, Olivia Jacobs, Austin Omala
-
-READ ME
