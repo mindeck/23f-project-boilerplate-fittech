@@ -1,29 +1,38 @@
 # app/facilities/routes.py
-from flask import Blueprint
+from flask import(Blueprint, request)
 
-facilities_bp = Blueprint("facilities", __name__)
+facilities = Blueprint("Facilities", __name__)
 
-@facilities_bp.route('/facilities', methods=['GET'])
+@facilities.route('/Facilities', methods=['GET'])
 def get_facilities():
-    # Get all gym facilities
+    # Logic to retrieve and return all facilities
+
+    @facilities.route('/Facilities', methods=['POST'])
+    def add_facility():
+        purchase_date = request.form['PurchaseDate']
+        last_maintenance_date = request.form['LastMaintenanceDate']
+        name = request.form['Name']
+        manufacturer = request.form['Manufacturer']
+        condition = request.form['Condition']
+        manager_id = request.form['ManagerID']
+        # Insert logic
+        # ...
+        pass
+
+@facilities.route('/Facilities/<int:EquipmentID>', methods=['PUT'])
+def update_facility(EquipmentID):
+    purchase_date = request.form['PurchaseDate']
+    last_maintenance_date = request.form['LastMaintenanceDate']
+    name = request.form['Name']
+    manufacturer = request.form['Manufacturer']
+    condition = request.form['Condition']
+    manager_id = request.form['ManagerID']
+    # Update logic
+    # ...
     pass
 
-@facilities_bp.route('/facilities', methods=['POST'])
-def add_facility():
-    # Add a new gym facility
-    pass
-
-@facilities_bp.route('/facilities/<int:facility_id>', methods=['GET'])
-def get_facility(facility_id):
-    # Get details of a specific gym facility
-    pass
-
-@facilities_bp.route('/facilities/<int:facility_id>', methods=['PUT'])
-def update_facility(facility_id):
-    # Update details of a specific gym facility
-    pass
-
-@facilities_bp.route('/facilities/<int:facility_id>', methods=['DELETE'])
-def delete_facility(facility_id):
-    # Delete a specific gym facility
-    pass
+@facilities.route('/Facilities/<int:EquipmentID>', methods=['DELETE'])
+def delete_facility(EquipmentID):
+    # Delete logic
+    # ...
+    return 'deleted'

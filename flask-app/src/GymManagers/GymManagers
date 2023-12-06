@@ -1,24 +1,39 @@
 # app/managers/routes.py
 from flask import Blueprint
 
-managers_bp = Blueprint("managers", __name__)
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
+)
 
-@managers_bp.route('/managers', methods=['GET'])
-def get_managers():
-    # Get all gym managers
+gym_managers = Blueprint("GymManagers", __name__)
+
+@gym_managers.route('/GymManagers', methods=['GET'])
+def get_gym_managers():
+    # Logic to retrieve and return all gym managers
     pass
 
-@managers_bp.route('/managers', methods=['POST'])
-def add_manager():
-    # Add a new gym manager
+@gym_managers.route('/GymManagers', methods=['POST'])
+def add_gym_manager():
+    first_name = request.form['FirstName']
+    last_name = request.form['LastName']
+    phone_number = request.form['PhoneNumber']
+    email = request.form['Email']
+    # Insert logic
+    # ...
     pass
 
-@managers_bp.route('/managers/<int:manager_id>', methods=['PUT'])
-def update_manager(manager_id):
-    # Update details of a specific manager
+@gym_managers.route('/GymManagers/<int:ManagerID>', methods=['PUT'])
+def update_gym_manager(ManagerID):
+    first_name = request.form['FirstName']
+    last_name = request.form['LastName']
+    phone_number = request.form['PhoneNumber']
+    email = request.form['Email']
+    # Update logic
+    # ...
     pass
 
-@managers_bp.route('/managers/<int:manager_id>', methods=['DELETE'])
-def delete_manager(manager_id):
-    # Delete a specific manager
+@gym_managers.route('/GymManagers/<int:ManagerID>', methods=['DELETE'])
+def delete_gym_manager(ManagerID):
+    # Delete logic
+    # ...
     pass
