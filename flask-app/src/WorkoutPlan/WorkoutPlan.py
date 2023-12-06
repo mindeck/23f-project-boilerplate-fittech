@@ -13,7 +13,18 @@ workout_plan = Blueprint('WorkoutPlan', __name__)
 @workout_plan.route('/WorkoutPlan', methods=['GET'])
 def get_workout_plans():
     # Logic to retrieve and return all workout plans
-    pass
+    cursor = db.get_db().cursor()
+    cursor.execute('select Goals, WorkoutType,\
+        MemberID from WorkoutPlan')
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
 
 @workout_plan.route('/WorkoutPlan', methods=['POST'])
 def add_workout_plan():
