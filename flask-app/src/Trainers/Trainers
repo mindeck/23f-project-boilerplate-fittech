@@ -39,6 +39,3 @@ def update_trainer(trainer_id):
 def delete_trainer(trainer_id):
     # Delete a specific gym trainer
     pass
-
-
-# Repeat a similar structure for other blueprints (trainer_schedule, trainer_resources, nutritionists, etc.)

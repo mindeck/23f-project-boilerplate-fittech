@@ -1,12 +1,19 @@
 # app/facilities/routes.py
 from flask import(Blueprint, request)
 
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
+)
+from flask import Blueprint, request, jsonify, make_response
+import json
+from src import db
+
 facilities = Blueprint("Facilities", __name__)
 
 @facilities.route('/Facilities', methods=['GET'])
 def get_facilities():
     # Logic to retrieve and return all facilities
-    cursor = db.get_db().cursor()
+    cursor = facilities.get_db().cursor()
     cursor.execute('select EquipmentID, PurchaseDate,\
         LastMaintenanceDate, Name, Manufacturer, Condition,\
                     ManagerID from Facilities')
