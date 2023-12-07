@@ -41,7 +41,7 @@ def add_membership():
             try:
                 cursor.execute(
                     "INSERT INTO Membership (StartDate, End, CreditCard, MemberID) VALUES (?, ?, ?, ?,)",
-                    (class_name, spots_available, start_time, membership_id),
+                    (start_date, end_date, credit_card, membership_id),
                 )
                 cursor.commit()
             except cursor.IntegrityError:
