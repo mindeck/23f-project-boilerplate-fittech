@@ -34,7 +34,25 @@ def add_membership():
     credit_card = request.form['CreditCard']
     member_id = request.form['MemberID']
     # Insert logic
-    # ...
+    cursor = db.get_db().cursor()
+        error = None
+
+        if error is None:
+            try:
+                cursor.execute(
+                    "INSERT INTO Membership (StartDate, End, CreditCard, MemberID) VALUES (?, ?, ?, ?,)",
+                    (class_name, spots_available, start_time, membership_id),
+                )
+                cursor.commit()
+            except cursor.IntegrityError:
+                error = f"Membership {member_id,} already exists."
+        else:
+            return redirect(url_for("auth.login"))
+
+        flash(error)
+
+    return render_template('auth/register.html')
+
 
 @membership.route('/Membership/<int:membership_id>', methods=['PUT'])
 def update_membership(membership_id):
