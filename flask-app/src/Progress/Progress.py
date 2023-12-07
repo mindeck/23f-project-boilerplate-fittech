@@ -34,7 +34,25 @@ def add_progress():
     time = request.form['Time']
     member_id = request.form['MemberID']
     # Insert logic
-    # ...
+    cursor = db.get_db().cursor()
+        error = None
+
+        if error is None:
+            try:
+                cursor.execute(
+                    "INSERT INTO Progress (WorkoutName, Sets, Reps, Weight, Time, MemberID) VALUES (?, ?, ?, ?, ?, ?,)",
+                    (class_name, spots_available, start_time, membership_id),
+                )
+                cursor.commit()
+            except cursor.IntegrityError:
+                error = f"Progress {workout_name,} already exists."
+        else:
+            return redirect(url_for("auth.login"))
+
+        flash(error)
+
+    return render_template('auth/register.html')
+
 
 @progress.route('/Progress/<int:progress_id>', methods=['PUT'])
 def update_progress(progress_id):
