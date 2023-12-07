@@ -57,5 +57,4 @@ def update_class(class_id):
     spots_available = request.form['SpotsAvailable']
     start_time = request.form['StartTime']
     membership_id = request.form['MemberID']
-    #
-as
+    
