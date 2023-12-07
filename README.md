@@ -17,3 +17,10 @@ This repo contains a boilerplate setup for spinning up 3 Docker containers:
 
 
 Markus Indeck, Luke Albinger, Olivia Jacob, Austin Omala
+
+# Project Overview
+This app is designed to manage information of members, equipment, trainers, nutritionists, workoutplans, and more for gym managers. An app was created via AppSmith.
+
+# Database Design
+The db/ folder generates a MYSQL database within a MYSQL container.
+database diagram: <img width="722" alt="Screenshot 2023-12-07 at 5 28 07 PM" src="https://github.com/mindeck/23f-project-boilerplate-fittech/assets/152943305/1784dfc4-b933-4311-a0e1-9202ddb7c88a">
