@@ -40,7 +40,7 @@ def add_gym_manager():
             try:
                 cursor.execute(
                     "INSERT INTO GymManagers (FirstName, LastName, PhoneNumber, Email) VALUES (?, ?, ?, ?,)",
-                    (class_name, spots_available, start_time, membership_id),
+                    (first_name, last_name, phone_number, email),
                 )
                 cursor.commit()
             except cursor.IntegrityError:
