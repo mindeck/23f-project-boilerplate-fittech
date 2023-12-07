@@ -40,7 +40,33 @@ def update_workout_plan(plan_id):
     workout_type = request.form['WorkoutType']
     member_id = request.form['MemberID']
     # Update logic
-    # ...
+    # Define the SQL query to update data
+        sql = """
+        UPDATE WorkoutPlans
+        SET Goals = ?, WorkoutType = ?
+        WHERE MemberID = ? AND PlanID = ?
+        """
+        # Execute the query
+        cursor = conn.cursor()
+        cursor.execute(sql, (goals, workout_type, member_id, plan_id))
+
+        # Check if any rows were affected
+        rows_affected = cursor.rowcount
+
+        # Commit the changes to the database
+        conn.commit()
+
+        # Close the connection
+        cursor.close()
+        conn.close()
+
+        if rows_affected > 0:
+            return jsonify({"message": "Workout plan updated successfully."}), 200
+        else:
+            return jsonify({"error": "No workout plan found with the provided details."}), 404
+        except Exception as e:
+        return jsonify({"error": f"Failed to update workout plan: {e}"}), 400
+
 
 @workout_plan.route('/WorkoutPlan/<int:plan_id>', methods=['DELETE'])
 def delete_workout_plan(plan_id):
