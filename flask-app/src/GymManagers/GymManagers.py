@@ -33,8 +33,25 @@ def add_gym_manager():
     phone_number = request.form['PhoneNumber']
     email = request.form['Email']
     # Insert logic
-    # ...
-    pass
+    cursor = db.get_db().cursor()
+        error = None
+
+        if error is None:
+            try:
+                cursor.execute(
+                    "INSERT INTO GymManagers (FirstName, LastName, PhoneNumber, Email) VALUES (?, ?, ?, ?,)",
+                    (class_name, spots_available, start_time, membership_id),
+                )
+                cursor.commit()
+            except cursor.IntegrityError:
+                error = f"GymManagers {FirstName, LastName} already exists."
+        else:
+            return redirect(url_for("auth.login"))
+
+        flash(error)
+
+    return render_template('auth/register.html')
+
 
 @gym_managers.route('/GymManagers/<int:ManagerID>', methods=['PUT'])
 def update_gym_manager(ManagerID):
