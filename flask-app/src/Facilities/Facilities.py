@@ -36,8 +36,25 @@ def add_facility():
     condition = request.form['Condition']
     manager_id = request.form['ManagerID']
     # Insert logic
-    # ...
-    pass
+    cursor = db.get_db().cursor()
+        error = None
+
+        if error is None:
+            try:
+                cursor.execute(
+                    "INSERT INTO Facilities (PurchaseDate, LastMaintenanceDate, Name, Manufacturer, Condition, ManagerID) VALUES (?, ?, ?, ?, ?, ?)",
+                    (class_name, spots_available, start_time, membership_id),
+                )
+                cursor.commit()
+            except cursor.IntegrityError:
+                error = f"Facilities {Name, Manufacturer} already exists."
+        else:
+            return redirect(url_for("auth.login"))
+
+        flash(error)
+
+    return render_template('auth/register.html')
+
 
 @facilities.route('/Facilities/<int:EquipmentID>', methods=['PUT'])
 def update_facility(EquipmentID):
