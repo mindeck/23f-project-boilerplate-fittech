@@ -43,7 +43,7 @@ def add_facility():
             try:
                 cursor.execute(
                     "INSERT INTO Facilities (PurchaseDate, LastMaintenanceDate, Name, Manufacturer, Condition, ManagerID) VALUES (?, ?, ?, ?, ?, ?)",
-                    (class_name, spots_available, start_time, membership_id),
+                    (purchase_date, last_maintenance_date, name, manufacturer, condition, membership_id),
                 )
                 cursor.commit()
             except cursor.IntegrityError:
