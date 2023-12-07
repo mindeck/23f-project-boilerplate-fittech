@@ -58,3 +58,4 @@ def update_class(class_id):
     start_time = request.form['StartTime']
     membership_id = request.form['MemberID']
     #
+as
