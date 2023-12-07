@@ -41,7 +41,7 @@ def add_progress():
             try:
                 cursor.execute(
                     "INSERT INTO Progress (WorkoutName, Sets, Reps, Weight, Time, MemberID) VALUES (?, ?, ?, ?, ?, ?,)",
-                    (class_name, spots_available, start_time, membership_id),
+                    (workout_name, sets, reps, weight, time, membership_id),
                 )
                 cursor.commit()
             except cursor.IntegrityError:
