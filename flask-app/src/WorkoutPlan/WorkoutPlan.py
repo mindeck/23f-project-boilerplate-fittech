@@ -32,7 +32,24 @@ def add_workout_plan():
     workout_type = request.form['WorkoutType']
     member_id = request.form['MemberID']
     # Insert logic
-    # ...
+    cursor = db.get_db().cursor()
+        error = None
+
+        if error is None:
+            try:
+                cursor.execute(
+                    "INSERT INTO WorkoutPlan (Goals, WorkoutType, MemberID) VALUES (?, ?, ?,)",
+                    (goals, workout_type, membership_id),
+                )
+                cursor.commit()
+            except cursor.IntegrityError:
+                error = f"WorkoutPlan {workout_type,} already exists."
+        else:
+            return redirect(url_for("auth.login"))
+
+        flash(error)
+
+    return render_template('auth/register.html')
 
 @workout_plan.route('/WorkoutPlan/<int:plan_id>', methods=['PUT'])
 def update_workout_plan(plan_id):
