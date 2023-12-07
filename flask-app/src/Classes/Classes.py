@@ -33,9 +33,9 @@ def add_class():
     start_time = request.form['StartTime']
     membership_id = request.form['MemberID']
     cursor = db.get_db().cursor()
-        error = None
+    error = None
 
-        if error is None:
+    if error is None:
             try:
                 cursor.execute(
                     "INSERT INTO Classes (ClassName, SpotsAvailable, StartTime, MemberID) VALUES (?, ?, ?, ?,)",
@@ -44,10 +44,10 @@ def add_class():
                 cursor.commit()
             except cursor.IntegrityError:
                 error = f"Classes {class_name, start_time} already exists."
-        else:
+    else:
             return redirect(url_for("auth.login"))
 
-        flash(error)
+    flash(error)
 
     return render_template('auth/register.html')
 
@@ -57,4 +57,8 @@ def update_class(class_id):
     spots_available = request.form['SpotsAvailable']
     start_time = request.form['StartTime']
     membership_id = request.form['MemberID']
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> 9f42974 (updates)
